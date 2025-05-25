@@ -1,0 +1,12 @@
+--- checkpoint_utils_old.py	2025-05-25 15:18:13.784853944 +0000
++++ checkpoint_utils.py	2025-05-25 15:33:07.357595243 +0000
+@@ -1589,7 +1589,8 @@
+     if url.startswith("file://") or os.path.exists(url):
+         pretrained_state_dict = torch.load(url.replace("file://", ""), map_location="cpu")
+     else:
+-        unique_filename = url.split("https://sghub.deci.ai/models/")[1].replace("/", "_").replace(" ", "_")
++        url = url.replace("https://sghub.deci.ai", "https://sg-hub-nv.s3.amazonaws.com")
++        unique_filename = url.split("https://sg-hub-nv.s3.amazonaws.com/models/")[1].replace("/", "_").replace(" ", "_")
+         map_location = torch.device("cpu")
+         with wait_for_the_master(get_local_rank()):
+             pretrained_state_dict = load_state_dict_from_url(url=url, map_location=map_location, file_name=unique_filename)

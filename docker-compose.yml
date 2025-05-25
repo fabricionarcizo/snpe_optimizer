@@ -1,0 +1,70 @@
+# docker-compose.yml
+#
+# MIT License
+#
+# Copyright (c) 2025 Fabricio Batista Narcizo, Elizabete Munzlinger, Anuj Dutt,
+# Shan Ahmed Shaffi, and Sai Narsi Reddy Donthi Reddy.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
+
+services:
+  hagrid_optimizer:
+    container_name: hagrid_optimizer
+    hostname: hagrid_optimizer
+    image: hagrid_optimizer
+    build:
+      dockerfile: Dockerfile
+    init: false
+    restart: unless-stopped
+    ports:
+      - "8888:8888"
+      - "8889:8889"
+      - "5037:5037"
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+    volumes:
+      - ./models:/models
+      - ./notebooks:/workspace/notebooks
+      - ./qairt:/qairt
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    environment:
+      - TZ=Europe/Copenhagen
+      - PYTHONUNBUFFERED=1
+      - QNN_SDK_ROOT=/qairt/2.34.0.250424
+    working_dir: /workspace/notebooks
+    command: >
+      zsh -c "
+        source ~/.zshrc &&
+        conda activate snpe &&
+        jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root --NotebookApp.token='' &
+
+        conda activate super-gradients &&
+        jupyter notebook --ip=0.0.0.0 --port=8889 --allow-root --NotebookApp.token='' &
+
+        wait"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

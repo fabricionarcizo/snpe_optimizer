@@ -172,3 +172,16 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Processing folders
+qairt/2.34.0.250424/
+notebooks/val2017/
+notebooks/raw/
+
+# Downloaded files
+*.zip
+*.tar.gz
+
+# AI models
+*.onnx
+*.dlc
