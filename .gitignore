@@ -182,6 +182,7 @@ qairt/2.34.0.250424/
 notebooks/val/
 notebooks/val2017/
 notebooks/raw/
+models/yolo_nas_s/
 
 # Downloaded files
 *.zip

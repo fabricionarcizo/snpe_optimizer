@@ -59,7 +59,7 @@ services:
         conda activate snpe &&
         jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root --NotebookApp.token='' &
 
-        conda activate super-gradients &&
+        conda activate model-zoo &&
         jupyter notebook --ip=0.0.0.0 --port=8889 --allow-root --NotebookApp.token='' &
 
         wait"

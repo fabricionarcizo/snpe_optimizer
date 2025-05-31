@@ -91,7 +91,7 @@ ENV PYTHON_VERSION=3.10.16
 
 RUN echo "y" | /root/.miniconda3/bin/conda create --name snpe python=$PYTHON_VERSION
 
-RUN echo "y" | /root/.miniconda3/bin/conda create --name super-gradients python=$PYTHON_VERSION
+RUN echo "y" | /root/.miniconda3/bin/conda create --name model-zoo python=$PYTHON_VERSION
 
 # Install the Python packages used for development, environment management,
 # and interactive computing.
@@ -104,7 +104,7 @@ RUN source ~/.miniconda3/etc/profile.d/conda.sh \
         wheel
 
 RUN source ~/.miniconda3/etc/profile.d/conda.sh \
-    && conda activate super-gradients \
+    && conda activate model-zoo \
     && pip --no-cache-dir install \
         jupyter \
         pip-tools \
@@ -193,11 +193,26 @@ RUN source ~/.miniconda3/etc/profile.d/conda.sh \
 
 # Install AI model packages.
 RUN source ~/.miniconda3/etc/profile.d/conda.sh \
-    && conda activate super-gradients \
+    && conda activate model-zoo \
     && pip --no-cache-dir install \
         super-gradients==3.7.1 \
         pycocotools==2.0.8 \
         ultralytics==8.3.146
+
+RUN source ~/.miniconda3/etc/profile.d/conda.sh \
+    && conda activate model-zoo \
+    && pip --no-cache-dir install \
+        onnx2tf==1.27.10 \
+        tensorflow==2.19.0 \
+        tf-keras==2.19.0 \
+        onnx-graphsurgeon==0.5.8 \
+        ai_edge_litert==1.2.0 \
+        sng4onnx==1.0.4
+
+RUN source ~/.miniconda3/etc/profile.d/conda.sh \
+    && conda activate model-zoo \
+    && pip --no-cache-dir install -U \
+        numpy==1.23.0
 
 # Install additional packages for oh-my-zsh environment.
 RUN \
@@ -227,7 +242,7 @@ RUN chmod +x /setup_env.sh
 RUN /bin/zsh /setup_env.sh
 
 # Run the patch to fix the URL in the super-gradients package.
-RUN patch -p1 /root/.miniconda3/envs/super-gradients/lib/python3.10/site-packages/super_gradients/training/utils/checkpoint_utils.py < /fix_url.patch
+RUN patch -p1 /root/.miniconda3/envs/model-zoo/lib/python3.10/site-packages/super_gradients/training/utils/checkpoint_utils.py < /fix_url.patch
 
 # Default env variables.
 ENV QNN_SDK_ROOT=/qairt/2.34.0.250424
