@@ -1,6 +1,6 @@
 # hagRID Optimizer
 
-This repository contains tools and scripts for optimizing deep learning models, with a focus on YOLO NAS models, for deployment on edge devices. It includes model conversion, quantization, and benchmarking utilities, as well as example notebooks for model optimization and evaluation. This is a research-oriented optimization toolkit designed for experiments and development for the tutorial `Edge AI in Action: Technologies and Applications` presented during the IEEE/CVF Conference on Computer Vision and Pattern Recognition 2025 (CVPR 2025).
+This repository contains tools and scripts for optimizing deep learning models, with a focus on YOLO NAS and hagRID models, for deployment on edge devices. It includes model conversion, quantization, and benchmarking utilities, as well as example notebooks for model optimization and evaluation. This toolkit is designed for the tutorial `Edge AI in Action: Technologies and Applications` at IEEE/CVF CVPR 2025.
 
 ## Table of Contents
 
@@ -9,6 +9,7 @@ This repository contains tools and scripts for optimizing deep learning models, 
 - [Setup](#setup)
 - [Usage](#usage)
 - [Model Zoo](#model-zoo)
+- [Output Models](#output-models)
 - [Notebooks](#notebooks)
 - [License](#license)
 
@@ -26,7 +27,7 @@ This repository contains tools and scripts for optimizing deep learning models, 
 ├── README.md
 ├── setup_env.sh
 ├── models/
-│   └── README.md
+│   ├── README.md
 ├── notebooks/
 │   ├── model_optimization.ipynb
 │   ├── model_zoo.ipynb
@@ -34,8 +35,8 @@ This repository contains tools and scripts for optimizing deep learning models, 
 │   ├── README.md
 ```
 
-- **models/**: Pretrained and optimized model files.
-- **notebooks/**: Jupyter notebooks for model optimization and evaluation.
+- **models/**: Pretrained and optimized model files (YOLO NAS and hagRID variants).
+- **notebooks/**: Jupyter notebooks for model optimization, export, and evaluation. Contains validation and raw data folders.
 - **qairt/**: SDK and tools for quantization and inference.
 - **setup_env.sh**: Script to set up the Python environment.
 - **download_and_setup_sdk.sh**: Script to download and set up the required SDK.
@@ -49,7 +50,7 @@ This repository contains tools and scripts for optimizing deep learning models, 
 - Python 3.8+
 - Docker (optional, for containerized setup)
 - Jupyter Notebook (for running notebooks)
-- Bash shell
+- Bash or Zsh shell
 
 ---
 
@@ -57,24 +58,24 @@ This repository contains tools and scripts for optimizing deep learning models, 
 
 ### 1. Clone the Repository
 
-```bash
+```zsh
 git clone https://github.com/fabricionarcizo/hagRID_optimizer.git
 cd hagRID_optimizer
 ```
 
-## 2. Download and Set Up the SDK
+### 2. Download and Set Up the SDK
 
 Run the script to download and set up the required SDK (e.g., Qualcomm AI Runtime):
 
-```bash
+```zsh
 bash download_and_setup_sdk.sh
 ```
 
 ### 3. Use Docker
 
-To build and run the project in a docker-compose:
+To build and run the project with docker-compose:
 
-```bash
+```zsh
 docker-compose build
 docker-compose up -d
 ```
@@ -83,42 +84,48 @@ docker-compose up -d
 
 ## Usage
 
-### 1. Model Optimization
+### 1. Model Export and Optimization
 
-- Use the Jupyter notebook `notebooks/model_zoo.ipynb` to to load a COCO-pretrained YOLO-NAS S model and export it to ONNX format using PyTorch and SuperGradients.
-- The `notebooks/model_zoo.ipynb` will save models in the `models/` directory.
-- Use the Jupyter notebook `notebooks/model_optimization.ipynb` to perform model quantization, conversion, and benchmarking.
-- The `notebooks/model_optimization.ipynb` will create a sample of coco dataset in `notebooks/val2017/` and `notebooks/raw/` directories, and save optimized models in the `models/` directory.
+- Use the Jupyter notebook `notebooks/model_zoo.ipynb` to:
+  - Download and export a COCO-pretrained YOLO-NAS S model to ONNX format.
+  - Download and export a hagRID-pretrained YOLO 11 model to ONNX format.
+  - Save all exported models in the `models/` directory.
+- Use the Jupyter notebook `notebooks/model_optimization.ipynb` to:
+  - Perform model quantization, conversion, and benchmarking.
+  - Create validation samples in `notebooks/val2017/` and `notebooks/raw/`.
+  - Save optimized models in the `models/` directory.
 
 ### 2. Running Notebooks
 
-The docker-compose will automatically start the Jupyter Notebooks:
+The docker-compose setup will automatically start Jupyter Notebooks:
 
-1. **Access the model zoo notebook** in your browser at:  
-    [http://127.0.0.1:8889/notebooks/model_zoo.ipynb](http://127.0.0.1:8889/notebooks/model_zoo.ipynb)
-2. **Access the model optimization notebook** in your browser at:  
-    [http://127.0.0.1:8888/notebooks/model_optimization.ipynb](http://127.0.0.1:8888/notebooks/model_optimization.ipynb)
+- Access the model zoo notebook at:  
+  [http://127.0.0.1:8889/notebooks/model_zoo.ipynb](http://127.0.0.1:8889/notebooks/model_zoo.ipynb)
+- Access the model optimization notebook at:  
+  [http://127.0.0.1:8888/notebooks/model_optimization.ipynb](http://127.0.0.1:8888/notebooks/model_optimization.ipynb)
 
-### 3. Model Zoo
+---
 
-- The `models/` directory will contain various versions of YOLO NAS models in ONNX and DLC formats.
-- Refer to `notebooks/model_zoo.ipynb` for examples on how to use these models.
+## Model Zoo
+
+- The `models/` directory will contain both YOLO NAS and hagRID models in ONNX and DLC formats.
+- Refer to `notebooks/model_zoo.ipynb` for examples on how to use and export these models.
 
 ---
 
 ## Output Models
 
-- `yolo_nas_s.onnx`: Original ONNX model.
-- `yolo_nas_s_fp32.dlc`: Floating-point DLC model.
-- `yolo_nas_s_int8.dlc`: INT8 quantized DLC model.
-- `yolo_nas_s_int8_htp_sm7325.dlc`: INT8 quantized model for HTP (SM7325).
+- `yolo_nas_s.onnx`, `yolo_hagRID.onnx`: Original ONNX models (COCO and hagRID-pretrained).
+- `yolo_nas_s_fp32.dlc`, `yolo_hagRID_fp32.dlc`: Floating-point DLC models.
+- `yolo_nas_s_int8.dlc`, `yolo_hagRID_int8.dlc`: INT8 quantized DLC models.
+- `yolo_nas_s_int8_htp_sm7325.dlc`, `yolo_hagRID_int8_htp_sm7325.dlc`: INT8 quantized models for HTP (SM7325).
 
 ---
 
 ## Notebooks
 
 - `model_optimization.ipynb`: Step-by-step guide for optimizing and benchmarking models.
-- `model_zoo.ipynb`: Examples of using different models from the zoo.
+- `model_zoo.ipynb`: Examples of exporting and using both YOLO NAS and hagRID models.
 
 ---
 
