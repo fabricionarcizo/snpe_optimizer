@@ -35,7 +35,7 @@ This repository contains tools and scripts for optimizing deep learning models, 
 │   ├── README.md
 ```
 
-- **models/**: Pretrained and optimized model files (YOLO NAS and hagRID variants).
+- **models/**: Pretrained and optimized model files (YOLO NAS and hagRID variants, ONNX, DLC, TFLite, and TensorFlow SavedModel formats).
 - **notebooks/**: Jupyter notebooks for model optimization, export, and evaluation. Contains validation and raw data folders.
 - **qairt/**: SDK and tools for quantization and inference.
 - **setup_env.sh**: Script to set up the Python environment.
@@ -87,11 +87,11 @@ docker-compose up -d
 ### 1. Model Export and Optimization
 
 - Use the Jupyter notebook `notebooks/model_zoo.ipynb` to:
-  - Download and export a COCO-pretrained YOLO-NAS S model to ONNX format.
-  - Download and export a hagRID-pretrained YOLO 11 model to ONNX format.
+  - Download and export a COCO-pretrained YOLO-NAS S model to ONNX, TFLite, and TensorFlow formats.
+  - Download and export a hagRID-pretrained YOLO 11 model to ONNX, TFLite, and TensorFlow formats.
   - Save all exported models in the `models/` directory.
 - Use the Jupyter notebook `notebooks/model_optimization.ipynb` to:
-  - Perform model quantization, conversion, and benchmarking.
+  - Perform model quantization, conversion, and benchmarking (DLC, TFLite, etc).
   - Create validation samples in `notebooks/val2017/` and `notebooks/raw/`.
   - Save optimized models in the `models/` directory.
 
@@ -108,7 +108,7 @@ The docker-compose setup will automatically start Jupyter Notebooks:
 
 ## Model Zoo
 
-- The `models/` directory will contain both YOLO NAS and hagRID models in ONNX and DLC formats.
+- The `models/` directory will contain both YOLO NAS and hagRID models in ONNX, DLC, TFLite, and TensorFlow formats.
 - Refer to `notebooks/model_zoo.ipynb` for examples on how to use and export these models.
 
 ---
@@ -119,6 +119,9 @@ The docker-compose setup will automatically start Jupyter Notebooks:
 - `yolo_nas_s_fp32.dlc`, `yolo_hagRID_fp32.dlc`: Floating-point DLC models.
 - `yolo_nas_s_int8.dlc`, `yolo_hagRID_int8.dlc`: INT8 quantized DLC models.
 - `yolo_nas_s_int8_htp_sm7325.dlc`, `yolo_hagRID_int8_htp_sm7325.dlc`: INT8 quantized models for HTP (SM7325).
+- `yolo_nas_s_float16.tflite`, `yolo_nas_s_float32.tflite`, `yolo_nas_s_int8.tflite`: YOLO NAS TFLite models (various quantizations).
+- `yolo_hagRID_float16.tflite`, `yolo_hagRID_float32.tflite`, `yolo_hagRID_int8.tflite`: hagRID TFLite models (various quantizations).
+- `yolo_nas_s/`, `yolo_hagRID/`: TensorFlow SavedModel directories for each model.
 
 ---
 
