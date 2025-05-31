@@ -196,7 +196,8 @@ RUN source ~/.miniconda3/etc/profile.d/conda.sh \
     && conda activate super-gradients \
     && pip --no-cache-dir install \
         super-gradients==3.7.1 \
-        pycocotools==2.0.8
+        pycocotools==2.0.8 \
+        ultralytics==8.3.146
 
 # Install additional packages for oh-my-zsh environment.
 RUN \

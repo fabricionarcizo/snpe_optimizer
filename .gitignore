@@ -173,6 +173,9 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
+# macOS folders
+.DS_Store
+
 # Processing folders
 qairt/2.34.0.250424/
 notebooks/val2017/
@@ -185,3 +188,4 @@ notebooks/raw/
 # AI models
 *.onnx
 *.dlc
+*.pt
