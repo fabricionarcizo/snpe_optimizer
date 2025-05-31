@@ -183,6 +183,7 @@ notebooks/val/
 notebooks/val2017/
 notebooks/raw/
 models/yolo_nas_s/
+models/yolo_hagRID/
 
 # Downloaded files
 *.zip
@@ -192,3 +193,4 @@ models/yolo_nas_s/
 *.onnx
 *.dlc
 *.pt
+*.tflite
