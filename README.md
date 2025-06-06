@@ -135,3 +135,8 @@ The docker-compose setup will automatically start Jupyter Notebooks:
 ## License
 
 This project is licensed under the terms of the [LICENSE](LICENSE) file.
+
+
+---
+
+**Authors:** Fabricio Batista Narcizo, Elizabete Munzlinger, Sai Narsi Reddy Donthi Reddy, and Shan Ahmed Shaffi.

@@ -2,8 +2,8 @@
 #
 # MIT License
 #
-# Copyright (c) 2025 Fabricio Batista Narcizo, Elizabete Munzlinger, Anuj Dutt,
-# Shan Ahmed Shaffi, and Sai Narsi Reddy Donthi Reddy.
+# Copyright (c) 2025 Fabricio Batista Narcizo, Elizabete Munzlinger, Sai Narsi
+# Reddy Donthi Reddy, and Shan Ahmed Shaffi.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
