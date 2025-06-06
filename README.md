@@ -1,6 +1,6 @@
-# hagRID Optimizer
+# SNPE Optimizer
 
-This repository contains tools and scripts for optimizing deep learning models, with a focus on YOLO NAS and hagRID models, for deployment on edge devices. It includes model conversion, quantization, and benchmarking utilities, as well as example notebooks for model optimization and evaluation. This toolkit is designed for the tutorial `Edge AI in Action: Technologies and Applications` at IEEE/CVF CVPR 2025.
+This repository contains tools and scripts for optimizing deep learning models, with a focus on YOLO-NAS S and YOLO-hagRID models, for deployment on edge devices. It includes model conversion, quantization, and benchmarking utilities, as well as example notebooks for model optimization and evaluation. This toolkit is designed for the tutorial `Edge AI in Action: Technologies and Applications` at IEEE/CVF CVPR 2025.
 
 ## Table of Contents
 
@@ -35,7 +35,7 @@ This repository contains tools and scripts for optimizing deep learning models, 
 │   ├── README.md
 ```
 
-- **models/**: Pretrained and optimized model files (YOLO NAS and hagRID variants, ONNX, DLC, TFLite, and TensorFlow SavedModel formats).
+- **models/**: Pretrained and optimized model files (YOLO-NAS S and YOLO-hagRID variants, ONNX, DLC, TFLite, and TensorFlow SavedModel formats).
 - **notebooks/**: Jupyter notebooks for model optimization, export, and evaluation. Contains validation and raw data folders.
 - **qairt/**: SDK and tools for quantization and inference.
 - **setup_env.sh**: Script to set up the Python environment.
@@ -59,8 +59,8 @@ This repository contains tools and scripts for optimizing deep learning models, 
 ### 1. Clone the Repository
 
 ```zsh
-git clone https://github.com/fabricionarcizo/hagRID_optimizer.git
-cd hagRID_optimizer
+git clone https://github.com/fabricionarcizo/snpe_optimizer.git
+cd snpe_optimizer
 ```
 
 ### 2. Download and Set Up the SDK
@@ -108,7 +108,7 @@ The docker-compose setup will automatically start Jupyter Notebooks:
 
 ## Model Zoo
 
-- The `models/` directory will contain both YOLO NAS and hagRID models in ONNX, DLC, TFLite, and TensorFlow formats.
+- The `models/` directory will contain both YOLO-NAS S and YOLO-hagRID models in ONNX, DLC, TFLite, and TensorFlow formats.
 - Refer to `notebooks/model_zoo.ipynb` for examples on how to use and export these models.
 
 ---
@@ -119,8 +119,8 @@ The docker-compose setup will automatically start Jupyter Notebooks:
 - `yolo_nas_s_fp32.dlc`, `yolo_hagRID_fp32.dlc`: Floating-point DLC models.
 - `yolo_nas_s_int8.dlc`, `yolo_hagRID_int8.dlc`: INT8 quantized DLC models.
 - `yolo_nas_s_int8_htp_sm7325.dlc`, `yolo_hagRID_int8_htp_sm7325.dlc`: INT8 quantized models for HTP (SM7325).
-- `yolo_nas_s_float16.tflite`, `yolo_nas_s_float32.tflite`, `yolo_nas_s_int8.tflite`: YOLO NAS TFLite models (various quantizations).
-- `yolo_hagRID_float16.tflite`, `yolo_hagRID_float32.tflite`, `yolo_hagRID_int8.tflite`: hagRID TFLite models (various quantizations).
+- `yolo_nas_s_float16.tflite`, `yolo_nas_s_float32.tflite`, `yolo_nas_s_int8.tflite`: YOLO-NAS S TFLite models (various quantizations).
+- `yolo_hagRID_float16.tflite`, `yolo_hagRID_float32.tflite`, `yolo_hagRID_int8.tflite`: YOLO-hagRID TFLite models (various quantizations).
 - `yolo_nas_s/`, `yolo_hagRID/`: TensorFlow SavedModel directories for each model.
 
 ---
@@ -128,7 +128,7 @@ The docker-compose setup will automatically start Jupyter Notebooks:
 ## Notebooks
 
 - `model_optimization.ipynb`: Step-by-step guide for optimizing and benchmarking models.
-- `model_zoo.ipynb`: Examples of exporting and using both YOLO NAS and hagRID models.
+- `model_zoo.ipynb`: Examples of exporting and using both YOLO-NAS S and YOLO-hagRID models.
 
 ---
 

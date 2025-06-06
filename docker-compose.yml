@@ -25,10 +25,10 @@
 #
 
 services:
-  hagrid_optimizer:
-    container_name: hagrid_optimizer
-    hostname: hagrid_optimizer
-    image: hagrid_optimizer
+  snpe_optimizer:
+    container_name: snpe_optimizer
+    hostname: snpe_optimizer
+    image: snpe_optimizer
     build:
       dockerfile: Dockerfile
     init: false
