@@ -31,6 +31,7 @@ This repository contains tools and scripts for optimizing deep learning models, 
 ├── notebooks/
 │   ├── model_optimization.ipynb
 │   ├── model_zoo.ipynb
+│   ├── qai_hub.ipynb
 ├── qairt/
 │   ├── README.md
 ```
@@ -94,6 +95,8 @@ docker-compose up -d
   - Perform model quantization, conversion, and benchmarking (DLC, TFLite, etc).
   - Create validation samples in `notebooks/val2017/` and `notebooks/raw/`.
   - Save optimized models in the `models/` directory.
+- Use the Jupyter notebook `notebooks/qai_hub.ipynb` to:
+  - Explore and interact with Qualcomm AI Hub resources and tools for model deployment and optimization.
 
 ### 2. Running Notebooks
 
@@ -129,13 +132,13 @@ The docker-compose setup will automatically start Jupyter Notebooks:
 
 - `model_optimization.ipynb`: Step-by-step guide for optimizing and benchmarking models.
 - `model_zoo.ipynb`: Examples of exporting and using both YOLO-NAS S and YOLO-hagRID models.
+- `qai_hub.ipynb`: Interface and utilities for Qualcomm AI Hub integration, providing access to additional model deployment and optimization workflows.
 
 ---
 
 ## License
 
 This project is licensed under the terms of the [LICENSE](LICENSE) file.
-
 
 ---
 
